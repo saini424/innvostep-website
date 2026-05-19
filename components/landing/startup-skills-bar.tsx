@@ -1,8 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
 
 const skills = [
   "Startup Skills",
@@ -17,34 +15,28 @@ const skills = [
   "Startup Execution",
 ]
 
-export function LogoMarquee() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
+export function StartupSkillsBar() {
   return (
-    <section
-      ref={ref}
-      className="py-20 relative overflow-hidden border-t border-b border-black/5 bg-[#f7f7f5]"
-    >
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.8 }}
-        className="max-w-7xl mx-auto px-6"
-      >
+    <section className="relative overflow-hidden py-16 bg-[#f7f7f5] border-y border-black/5">
+      
+      {/* Background Glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-orange-500/5" />
+
+      <div className="relative max-w-7xl mx-auto px-6">
+        
         {/* Heading */}
-        <p className="text-center text-gray-500 text-sm uppercase tracking-[0.25em] mb-12">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center text-sm uppercase tracking-[0.25em] text-gray-500 mb-10"
+        >
           Everything You Need To Build Your Startup Journey
-        </p>
+        </motion.p>
 
-        {/* Marquee container */}
-        <div className="relative">
+        {/* Skills Row */}
+        <div className="relative overflow-hidden">
           
-          {/* Gradient masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#f7f7f5] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#f7f7f5] to-transparent z-10" />
-
-          {/* Marquee */}
           <motion.div
             animate={{
               x: ["0%", "-50%"],
@@ -58,7 +50,7 @@ export function LogoMarquee() {
           >
             {[...skills, ...skills].map((skill, index) => (
               <motion.div
-                key={`${skill}-${index}`}
+                key={index}
                 whileHover={{
                   scale: 1.08,
                   y: -4,
@@ -82,7 +74,7 @@ export function LogoMarquee() {
             ))}
           </motion.div>
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }
