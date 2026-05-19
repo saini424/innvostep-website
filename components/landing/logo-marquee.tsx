@@ -4,57 +4,38 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 
-import {
-  Lightbulb,
-  Megaphone,
-  Brain,
-  Rocket,
-  Users,
-  PenTool,
-  Bot,
-  Target,
-} from "lucide-react"
-
 const skills = [
   {
     name: "Founder Mindset",
-    icon: Lightbulb,
-    color: "from-yellow-500 to-orange-500",
+    color: "text-yellow-500",
   },
   {
     name: "Networking",
-    icon: Users,
-    color: "from-indigo-500 to-purple-500",
+    color: "text-violet-500",
   },
   {
     name: "Startup Execution",
-    icon: Target,
-    color: "from-cyan-500 to-teal-500",
+    color: "text-cyan-500",
   },
   {
     name: "Startup Skills",
-    icon: Rocket,
-    color: "from-sky-500 to-blue-600",
+    color: "text-blue-500",
   },
   {
     name: "Business Thinking",
-    icon: Brain,
-    color: "from-amber-500 to-orange-500",
+    color: "text-orange-500",
   },
   {
     name: "Marketing",
-    icon: Megaphone,
-    color: "from-pink-500 to-rose-500",
+    color: "text-pink-500",
   },
   {
     name: "Content Creation",
-    icon: PenTool,
-    color: "from-violet-500 to-fuchsia-500",
+    color: "text-fuchsia-500",
   },
   {
     name: "AI Tools",
-    icon: Bot,
-    color: "from-emerald-500 to-green-600",
+    color: "text-emerald-500",
   },
 ]
 
@@ -69,31 +50,32 @@ export function LogoMarquee() {
   return (
     <section
       ref={ref}
-      className="py-24 md:py-32 bg-[#f8f9fb] overflow-hidden border-t border-gray-100"
+      className="relative py-28 md:py-36 overflow-hidden bg-[#f8f9fb]"
     >
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
         className="max-w-7xl mx-auto px-6"
       >
-        {/* Top label */}
+        {/* Small Label */}
         <div className="flex justify-center mb-6">
-          <div className="text-[13px] tracking-[0.35em] uppercase text-cyan-600 font-semibold">
-          </div>
+          <span className="uppercase tracking-[0.35em] text-cyan-600 text-[12px] font-semibold">
+            What You Will Master
+          </span>
         </div>
 
-        {/* Heading */}
+        {/* Main Heading */}
         <h2
           className="
             text-center
-            text-5xl
-            md:text-7xl
+            text-[52px]
+            md:text-[88px]
+            leading-[0.95]
+            tracking-[-0.05em]
             font-black
-            tracking-tight
             text-black
-            leading-[1]
-            max-w-5xl
+            max-w-6xl
             mx-auto
           "
         >
@@ -106,13 +88,13 @@ export function LogoMarquee() {
         <p
           className="
             text-center
-            text-lg
-            md:text-2xl
-            text-gray-500
+            text-[20px]
+            md:text-[28px]
+            leading-relaxed
+            text-[#6b7280]
             max-w-4xl
             mx-auto
             mt-8
-            leading-relaxed
             font-medium
           "
         >
@@ -120,69 +102,59 @@ export function LogoMarquee() {
           growth strategy and founder mindset with practical learning.
         </p>
 
-        {/* Premium moving cards */}
-        <div className="relative mt-20 overflow-hidden">
+        {/* Moving Skill Row */}
+        <div className="relative mt-24 overflow-hidden">
 
-          {/* Left fade */}
+          {/* Fade left */}
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#f8f9fb] to-transparent z-10" />
 
-          {/* Right fade */}
+          {/* Fade right */}
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#f8f9fb] to-transparent z-10" />
 
-          <div className="flex gap-5 animate-marquee whitespace-nowrap">
+          <div className="flex gap-16 animate-marquee whitespace-nowrap">
 
-            {[...skills, ...skills].map((skill, index) => {
-              const Icon = skill.icon
+            {[...skills, ...skills].map((skill, index) => (
+              <motion.div
+                key={`${skill.name}-${index}`}
+                whileHover={{
+                  y: -2,
+                  scale: 1.03,
+                }}
+                transition={{ duration: 0.2 }}
+                className="
+                  flex
+                  items-center
+                  gap-3
+                  shrink-0
+                  cursor-default
+                "
+              >
+                {/* Colored dot */}
+                <div
+                  className={`
+                    w-2.5
+                    h-2.5
+                    rounded-full
+                    ${skill.color}
+                    bg-current
+                    shadow-lg
+                  `}
+                />
 
-              return (
-                <motion.div
-                  key={`${skill.name}-${index}`}
-                  whileHover={{
-                    y: -6,
-                    scale: 1.03,
-                  }}
-                  transition={{ duration: 0.2 }}
+                {/* Text */}
+                <span
                   className="
-                    shrink-0
-                    flex
-                    items-center
-                    gap-3
-                    px-7
-                    py-5
-                    rounded-2xl
-                    bg-white/90
-                    backdrop-blur-xl
-                    border
-                    border-gray-200
-                    shadow-[0_4px_30px_rgba(0,0,0,0.04)]
-                    hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)]
-                    transition-all
+                    text-[20px]
+                    md:text-[28px]
+                    font-semibold
+                    tracking-[-0.03em]
+                    text-[#111111]
                   "
                 >
-                  <Icon
-                    className={`
-                      w-4 h-4
-                      bg-gradient-to-r ${skill.color}
-                      bg-clip-text
-                      text-transparent
-                      stroke-[2.4]
-                    `}
-                  />
-
-                  <span
-                    className="
-                      text-[15px]
-                      md:text-[16px]
-                      font-semibold
-                      tracking-tight
-                      text-[#111111]
-                    "
-                  >
-                    {skill.name}
-                  </span>
-                </motion.div>
-              )
-            })}
+                  {skill.name}
+                </span>
+              </motion.div>
+            ))}
           </div>
         </div>
       </motion.div>
