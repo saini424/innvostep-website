@@ -37,48 +37,47 @@ export function Navbar() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? "bg-white/80 backdrop-blur-xl border-b border-gray-200 py-3"
-            : "py-6"
+            : "py-4 md:py-6"
         }`}
       >
-        <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          
-          {/* Premium Animated Logo */}
+        <nav className="max-w-7xl mx-auto px-5 md:px-6 flex items-center justify-between">
+
+          {/* Logo */}
           <Link href="/">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="flex items-center gap-3 cursor-pointer"
+              transition={{ duration: 0.5 }}
+              className="flex items-center gap-2 md:gap-3 cursor-pointer"
             >
-              
+
               {/* Floating Logo */}
               <motion.div
                 animate={{
-                  y: [0, -3, 0],
+                  y: [0, -2, 0],
                 }}
                 transition={{
                   duration: 3,
                   repeat: Infinity,
                 }}
-                className="relative"
+                className="relative shrink-0"
               >
-                
                 {/* Glow */}
                 <div className="absolute inset-0 bg-orange-500/20 blur-xl rounded-full scale-125" />
 
                 <Image
                   src="/logo.png"
                   alt="Innvostep Logo"
-                  width={52}
-                  height={52}
-                  className="relative object-contain"
+                  width={44}
+                  height={44}
+                  className="relative object-contain md:w-[52px] md:h-[52px]"
                   priority
                 />
               </motion.div>
 
-              {/* Brand Text */}
+              {/* Brand Name */}
               <div className="flex flex-col leading-none">
-                <span className="text-2xl font-black tracking-tight text-black">
+                <span className="text-xl md:text-2xl font-black tracking-tight text-black whitespace-nowrap">
                   Innvo
                   <span className="text-orange-500">
                     step
@@ -88,7 +87,7 @@ export function Navbar() {
             </motion.div>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <Link
@@ -101,28 +100,22 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* CTA Buttons */}
+          {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Button
-              variant="ghost"
-              className="text-gray-600 hover:text-black"
-            >
-            </Button>
-
             <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6">
               Start Learning
             </Button>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-black"
+            className="md:hidden p-2 text-black shrink-0"
           >
             {isMobileMenuOpen ? (
-              <X className="w-6 h-6" />
+              <X className="w-7 h-7" />
             ) : (
-              <Menu className="w-6 h-6" />
+              <Menu className="w-7 h-7" />
             )}
           </button>
         </nav>
@@ -136,7 +129,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-24 px-6 md:hidden"
+            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-28 px-6 md:hidden"
           >
             <div className="flex flex-col gap-6">
               {navItems.map((item, index) => (
@@ -149,7 +142,7 @@ export function Navbar() {
                   <Link
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-2xl font-medium text-black hover:text-orange-500 transition-colors"
+                    className="text-2xl font-semibold text-black hover:text-orange-500 transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -159,12 +152,12 @@ export function Navbar() {
               <div className="flex flex-col gap-4 mt-8">
                 <Button
                   variant="outline"
-                  className="w-full py-6"
+                  className="w-full py-6 rounded-xl"
                 >
                   Join Free
                 </Button>
 
-                <Button className="w-full py-6 bg-orange-500 hover:bg-orange-600 text-white">
+                <Button className="w-full py-6 bg-orange-500 hover:bg-orange-600 text-white rounded-xl">
                   Get Started
                 </Button>
               </div>
