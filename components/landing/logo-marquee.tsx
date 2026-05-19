@@ -80,7 +80,6 @@ export function LogoMarquee() {
         {/* Top label */}
         <div className="flex justify-center mb-6">
           <div className="text-[13px] tracking-[0.35em] uppercase text-cyan-600 font-semibold">
-            What You Will Master
           </div>
         </div>
 
