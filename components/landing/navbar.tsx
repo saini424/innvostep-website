@@ -41,6 +41,7 @@ export function Navbar() {
         }`}
       >
         <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          
           {/* Premium Animated Logo */}
           <Link href="/">
             <motion.div
@@ -49,6 +50,7 @@ export function Navbar() {
               transition={{ duration: 0.6 }}
               className="flex items-center gap-3 cursor-pointer"
             >
+              
               {/* Floating Logo */}
               <motion.div
                 animate={{
@@ -60,6 +62,7 @@ export function Navbar() {
                 }}
                 className="relative"
               >
+                
                 {/* Glow */}
                 <div className="absolute inset-0 bg-orange-500/20 blur-xl rounded-full scale-125" />
 
@@ -80,10 +83,6 @@ export function Navbar() {
                   <span className="text-orange-500">
                     step
                   </span>
-                </span>
-
-                <span className="text-[10px] uppercase tracking-[0.3em] text-gray-500 mt-1">
-                  Startup Learning
                 </span>
               </div>
             </motion.div>
@@ -108,7 +107,6 @@ export function Navbar() {
               variant="ghost"
               className="text-gray-600 hover:text-black"
             >
-              Join Free
             </Button>
 
             <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6">
