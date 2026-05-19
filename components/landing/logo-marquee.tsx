@@ -19,65 +19,93 @@ const skills = [
 
 export function LogoMarquee() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+
+  const isInView = useInView(ref, {
+    once: true,
+    margin: "-100px",
+  })
 
   return (
     <section
       ref={ref}
-      className="py-20 relative overflow-hidden border-t border-b border-black/5 bg-[#f7f7f5]"
+      className="relative py-24 overflow-hidden bg-white border-y border-black/5"
     >
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        initial={{ opacity: 0, y: 40 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
-        className="max-w-7xl mx-auto px-6"
+        className="max-w-7xl mx-auto"
       >
         {/* Heading */}
-        <p className="text-center text-gray-500 text-sm uppercase tracking-[0.25em] mb-12">
-          Everything You Need To Build Your Startup Journey
-        </p>
+        <div className="text-center mb-14 px-6">
+          <p className="text-[12px] tracking-[0.35em] uppercase text-cyan-600 font-semibold mb-5">
+            WHAT YOU WILL LEARN
+          </p>
 
-        {/* Marquee container */}
-        <div className="relative">
-          
-          {/* Gradient masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#f7f7f5] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#f7f7f5] to-transparent z-10" />
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-black leading-tight">
+            Everything needed to build
+            <br />
+            your startup journey
+          </h2>
 
-          {/* Marquee */}
+          <p className="mt-5 text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
+            Learn real startup skills, modern business thinking,
+            marketing, AI tools, execution frameworks and founder mindset.
+          </p>
+        </div>
+
+        {/* Marquee */}
+        <div className="relative mt-16">
+
+          {/* Left blur */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
+
+          {/* Right blur */}
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
+
           <motion.div
             animate={{
               x: ["0%", "-50%"],
             }}
             transition={{
-              duration: 22,
+              duration: 28,
               repeat: Infinity,
               ease: "linear",
             }}
-            className="flex gap-6 w-max"
+            className="flex gap-5 w-max"
           >
             {[...skills, ...skills].map((skill, index) => (
               <motion.div
                 key={`${skill}-${index}`}
                 whileHover={{
-                  scale: 1.08,
-                  y: -4,
+                  y: -5,
+                  scale: 1.03,
+                }}
+                transition={{
+                  duration: 0.2,
                 }}
                 className="
-                  px-6 py-4 rounded-2xl
-                  bg-white/80 backdrop-blur-xl
-                  border border-black/5
-                  shadow-[0_8px_30px_rgba(0,0,0,0.04)]
-                  text-gray-800
-                  font-semibold
-                  whitespace-nowrap
-                  hover:border-cyan-400/40
+                  group
+                  px-8 py-5
+                  rounded-2xl
+                  bg-[#fafafa]
+                  border border-black/6
+                  shadow-[0_4px_20px_rgba(0,0,0,0.04)]
+                  hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)]
+                  hover:border-cyan-200
                   transition-all duration-300
+                  whitespace-nowrap
                 "
               >
-                <span className="bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
-                  {skill}
-                </span>
+                <div className="flex items-center gap-3">
+
+                  {/* Small dot */}
+                  <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:scale-125 transition-transform" />
+
+                  <span className="text-lg font-semibold text-gray-800 tracking-tight">
+                    {skill}
+                  </span>
+                </div>
               </motion.div>
             ))}
           </motion.div>
