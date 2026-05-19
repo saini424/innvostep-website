@@ -7,35 +7,35 @@ import { useRef } from "react"
 const skills = [
   {
     name: "Founder Mindset",
-    color: "text-yellow-500",
+    color: "text-black",
   },
   {
     name: "Networking",
-    color: "text-violet-500",
+    color: "text-[#991b1b]",
   },
   {
     name: "Startup Execution",
-    color: "text-cyan-500",
+    color: "text-black",
   },
   {
     name: "Startup Skills",
-    color: "text-blue-500",
+    color: "text-[#166534]",
   },
   {
     name: "Business Thinking",
-    color: "text-orange-500",
+    color: "text-black",
   },
   {
     name: "Marketing",
-    color: "text-pink-500",
+    color: "text-[#991b1b]",
   },
   {
     name: "Content Creation",
-    color: "text-fuchsia-500",
+    color: "text-black",
   },
   {
     name: "AI Tools",
-    color: "text-emerald-500",
+    color: "text-[#166534]",
   },
 ]
 
@@ -50,7 +50,7 @@ export function LogoMarquee() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden bg-[#f8f9fb] py-32 md:py-40"
+      className="relative overflow-hidden bg-[#f8f9fb] py-28 md:py-36"
     >
       <motion.div
         initial={{ opacity: 0, y: 80 }}
@@ -58,19 +58,19 @@ export function LogoMarquee() {
         transition={{ duration: 1 }}
         className="max-w-7xl mx-auto px-6"
       >
-        {/* top label */}
+        {/* Top Label */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2 }}
           className="flex justify-center mb-8"
         >
-          <span className="uppercase tracking-[0.45em] text-[12px] font-bold text-cyan-600">
-            WHAT YOU should MASTER
+          <span className="uppercase tracking-[0.45em] text-[12px] font-bold text-[#166534]">
+            WHAT YOU WILL MASTER
           </span>
         </motion.div>
 
-        {/* premium heading */}
+        {/* Premium Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -78,46 +78,46 @@ export function LogoMarquee() {
           className="
             text-center
             font-black
-            tracking-[-0.06em]
-            leading-[0.9]
-            text-[58px]
-            md:text-[110px]
+            tracking-[-0.05em]
+            leading-[0.95]
+            text-[44px]
+            md:text-[82px]
             text-black
-            max-w-6xl
+            max-w-5xl
             mx-auto
           "
         >
           Build real startup
           <br />
 
-          <span className="text-[#00bfff]">
+          <span className="text-[#991b1b]">
             skills
           </span>
 
           {" "}for the{" "}
 
-          <span className="text-[#8b5cf6]">
+          <span className="text-[#166534]">
             modern
           </span>
 
           {" "}world
         </motion.h2>
 
-        {/* subtitle */}
+        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.5 }}
           className="
             text-center
-            text-[20px]
-            md:text-[30px]
+            text-[18px]
+            md:text-[24px]
             leading-relaxed
             text-[#6b7280]
             font-medium
-            max-w-5xl
+            max-w-4xl
             mx-auto
-            mt-10
+            mt-8
           "
         >
           Learn entrepreneurship, AI tools, branding,
@@ -125,16 +125,16 @@ export function LogoMarquee() {
           through practical startup-focused education.
         </motion.p>
 
-        {/* moving premium row */}
-        <div className="relative mt-28 overflow-hidden">
+        {/* Moving Skill Row */}
+        <div className="relative mt-24 overflow-hidden">
 
-          {/* fade left */}
+          {/* Left Fade */}
           <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#f8f9fb] to-transparent z-10" />
 
-          {/* fade right */}
+          {/* Right Fade */}
           <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#f8f9fb] to-transparent z-10" />
 
-          {/* marquee */}
+          {/* Marquee */}
           <motion.div
             animate={{
               x: ["0%", "-50%"],
@@ -144,38 +144,37 @@ export function LogoMarquee() {
               duration: 22,
               ease: "linear",
             }}
-            className="flex gap-20 whitespace-nowrap w-max"
+            className="flex gap-16 whitespace-nowrap w-max"
           >
             {[...skills, ...skills].map((skill, index) => (
               <motion.div
                 key={`${skill.name}-${index}`}
                 whileHover={{
-                  y: -5,
-                  scale: 1.05,
+                  y: -3,
                 }}
                 transition={{ duration: 0.2 }}
-                className="flex items-center gap-4 shrink-0"
+                className="flex items-center gap-3 shrink-0"
               >
-                {/* premium glow dot */}
+                {/* Premium Small Dot */}
                 <div
                   className={`
-                    w-3
-                    h-3
+                    w-2.5
+                    h-2.5
                     rounded-full
                     ${skill.color}
                     bg-current
-                    shadow-[0_0_20px_currentColor]
+                    opacity-80
                   `}
                 />
 
-                {/* premium text */}
+                {/* Skill Text */}
                 <span
                   className={`
                     ${skill.color}
-                    text-[28px]
-                    md:text-[36px]
-                    font-black
-                    tracking-[-0.05em]
+                    text-[22px]
+                    md:text-[28px]
+                    font-bold
+                    tracking-[-0.03em]
                   `}
                 >
                   {skill.name}
