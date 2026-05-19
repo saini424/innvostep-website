@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const particles = [
@@ -18,7 +18,7 @@ const particles = [
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f7f7f5]">
-      
+
       {/* Light Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:70px_70px]" />
 
@@ -46,22 +46,6 @@ export function Hero() {
       ))}
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-
-        {/* FIXED BADGE */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/80 backdrop-blur-md mb-8 shadow-sm max-w-[90vw] sm:max-w-none"
-        >
-          <Sparkles className="w-4 h-4 text-cyan-600 flex-shrink-0" />
-
-          <span className="text-xs sm:text-sm text-gray-700 whitespace-nowrap">
-            Startup Learning Platform
-          </span>
-
-          <ArrowRight className="w-4 h-4 text-cyan-600 flex-shrink-0" />
-        </motion.div>
 
         {/* Heading */}
         <motion.h1
