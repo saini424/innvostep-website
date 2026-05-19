@@ -6,9 +6,9 @@ export const metadata = {
     "Learn entrepreneurship, startup execution and business growth.",
 
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 
