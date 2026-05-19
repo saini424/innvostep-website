@@ -4,12 +4,6 @@ export const metadata = {
   title: "Innvostep | Startup Learning Platform",
   description:
     "Learn entrepreneurship, startup execution and business growth.",
-
-  icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/favicon.png",
-  },
 };
 
 export default function RootLayout({
