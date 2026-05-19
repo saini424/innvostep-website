@@ -66,7 +66,7 @@ export function LogoMarquee() {
           className="flex justify-center mb-8"
         >
           <span className="uppercase tracking-[0.45em] text-[12px] font-bold text-[#166534]">
-            WHAT YOU WILL MASTER
+            WHAT YOU should MASTER
           </span>
         </motion.div>
 
