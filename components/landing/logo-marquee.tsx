@@ -4,17 +4,70 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 
+import {
+  Rocket,
+  Brain,
+  Megaphone,
+  SearchCheck,
+  PenSquare,
+  Sparkles,
+  UserCircle2,
+  Lightbulb,
+  Users,
+  Target,
+} from "lucide-react"
+
 const skills = [
-  "Startup Skills",
-  "Business Thinking",
-  "Marketing",
-  "Idea Validation",
-  "Content Creation",
-  "AI Tools",
-  "Personal Branding",
-  "Founder Mindset",
-  "Networking",
-  "Startup Execution",
+  {
+    name: "Startup Skills",
+    icon: Rocket,
+    color: "from-cyan-500 to-blue-500",
+  },
+  {
+    name: "Business Thinking",
+    icon: Brain,
+    color: "from-yellow-400 to-orange-500",
+  },
+  {
+    name: "Marketing",
+    icon: Megaphone,
+    color: "from-pink-500 to-rose-500",
+  },
+  {
+    name: "Idea Validation",
+    icon: SearchCheck,
+    color: "from-green-400 to-emerald-500",
+  },
+  {
+    name: "Content Creation",
+    icon: PenSquare,
+    color: "from-violet-500 to-purple-500",
+  },
+  {
+    name: "AI Tools",
+    icon: Sparkles,
+    color: "from-cyan-400 to-sky-500",
+  },
+  {
+    name: "Personal Branding",
+    icon: UserCircle2,
+    color: "from-orange-400 to-red-500",
+  },
+  {
+    name: "Founder Mindset",
+    icon: Lightbulb,
+    color: "from-amber-400 to-yellow-500",
+  },
+  {
+    name: "Networking",
+    icon: Users,
+    color: "from-blue-500 to-indigo-500",
+  },
+  {
+    name: "Startup Execution",
+    icon: Target,
+    color: "from-teal-400 to-cyan-500",
+  },
 ]
 
 export function LogoMarquee() {
@@ -28,86 +81,119 @@ export function LogoMarquee() {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden bg-white border-y border-black/5"
+      className="relative py-28 overflow-hidden bg-[#fafafa] border-y border-black/5"
     >
+      {/* Background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-cyan-500/5 blur-[140px] rounded-full" />
+
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
-        className="max-w-7xl mx-auto"
+        className="relative z-10 max-w-7xl mx-auto"
       >
-        {/* Heading */}
-        <div className="text-center mb-14 px-6">
-          <p className="text-[12px] tracking-[0.35em] uppercase text-cyan-600 font-semibold mb-5">
-            WHAT YOU WILL LEARN
+        {/* Top label */}
+        <div className="text-center px-6">
+          <p className="text-[12px] tracking-[0.35em] uppercase text-cyan-600 font-bold mb-6">
+            WHAT YOU WILL MASTER
           </p>
 
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-black leading-tight">
-            Everything needed to build
+          {/* Heading */}
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight text-black leading-[1.05] max-w-5xl mx-auto">
+            Build real startup skills
             <br />
-            your startup journey
+            for the modern world
           </h2>
 
-          <p className="mt-5 text-gray-500 text-lg max-w-2xl mx-auto leading-relaxed">
-            Learn real startup skills, modern business thinking,
-            marketing, AI tools, execution frameworks and founder mindset.
+          {/* Description */}
+          <p className="mt-8 text-gray-500 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto font-medium">
+            Learn entrepreneurship, AI tools, branding, execution,
+            growth strategy and founder mindset with practical learning.
           </p>
         </div>
 
         {/* Marquee */}
-        <div className="relative mt-16">
+        <div className="relative mt-20">
 
-          {/* Left blur */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
+          {/* Fade left */}
+          <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#fafafa] to-transparent z-20" />
 
-          {/* Right blur */}
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
+          {/* Fade right */}
+          <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#fafafa] to-transparent z-20" />
 
           <motion.div
             animate={{
               x: ["0%", "-50%"],
             }}
             transition={{
-              duration: 28,
+              duration: 30,
               repeat: Infinity,
               ease: "linear",
             }}
-            className="flex gap-5 w-max"
+            className="flex gap-6 w-max"
           >
-            {[...skills, ...skills].map((skill, index) => (
-              <motion.div
-                key={`${skill}-${index}`}
-                whileHover={{
-                  y: -5,
-                  scale: 1.03,
-                }}
-                transition={{
-                  duration: 0.2,
-                }}
-                className="
-                  group
-                  px-8 py-5
-                  rounded-2xl
-                  bg-[#fafafa]
-                  border border-black/6
-                  shadow-[0_4px_20px_rgba(0,0,0,0.04)]
-                  hover:shadow-[0_10px_40px_rgba(0,0,0,0.08)]
-                  hover:border-cyan-200
-                  transition-all duration-300
-                  whitespace-nowrap
-                "
-              >
-                <div className="flex items-center gap-3">
+            {[...skills, ...skills].map((skill, index) => {
+              const Icon = skill.icon
 
-                  {/* Small dot */}
-                  <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:scale-125 transition-transform" />
+              return (
+                <motion.div
+                  key={`${skill.name}-${index}`}
+                  whileHover={{
+                    y: -8,
+                    scale: 1.04,
+                  }}
+                  transition={{
+                    duration: 0.25,
+                  }}
+                  className="
+                    group
+                    relative
+                    overflow-hidden
+                    px-8
+                    py-6
+                    rounded-3xl
+                    bg-white/90
+                    backdrop-blur-xl
+                    border border-black/5
+                    shadow-[0_8px_40px_rgba(0,0,0,0.06)]
+                    hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)]
+                    transition-all duration-300
+                    whitespace-nowrap
+                  "
+                >
+                  {/* Hover glow */}
+                  <div
+                    className={`absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br ${skill.color} transition-opacity duration-300`}
+                  />
 
-                  <span className="text-lg font-semibold text-gray-800 tracking-tight">
-                    {skill}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+                  <div className="relative flex items-center gap-4">
+
+                    {/* Icon */}
+                    <div
+                      className={`
+                        w-12 h-12 rounded-2xl
+                        flex items-center justify-center
+                        bg-gradient-to-br ${skill.color}
+                        shadow-lg
+                      `}
+                    >
+                      <Icon className="w-5 h-5 text-white" />
+                    </div>
+
+                    {/* Text */}
+                    <div>
+                      <p className="text-[17px] font-bold tracking-tight text-gray-900">
+                        {skill.name}
+                      </p>
+
+                      <p className="text-sm text-gray-500 mt-1">
+                        Learn & execute
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              )
+            })}
           </motion.div>
         </div>
       </motion.div>
