@@ -50,112 +50,139 @@ export function LogoMarquee() {
   return (
     <section
       ref={ref}
-      className="relative py-28 md:py-36 overflow-hidden bg-[#f8f9fb]"
+      className="relative overflow-hidden bg-[#f8f9fb] py-32 md:py-40"
     >
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 80 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 1 }}
         className="max-w-7xl mx-auto px-6"
       >
-        {/* Small Label */}
-        <div className="flex justify-center mb-6">
-          <span className="uppercase tracking-[0.35em] text-cyan-600 text-[12px] font-semibold">
-            What You Will Master
+        {/* top label */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2 }}
+          className="flex justify-center mb-8"
+        >
+          <span className="uppercase tracking-[0.45em] text-[12px] font-bold text-cyan-600">
+            WHAT YOU WILL MASTER
           </span>
-        </div>
+        </motion.div>
 
-        {/* Main Heading */}
-        <h2
+        {/* premium heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.3 }}
           className="
             text-center
-            text-[52px]
-            md:text-[88px]
-            leading-[0.95]
-            tracking-[-0.05em]
             font-black
+            tracking-[-0.06em]
+            leading-[0.9]
+            text-[58px]
+            md:text-[110px]
             text-black
             max-w-6xl
             mx-auto
           "
         >
-          Build real startup skills
+          Build real startup
           <br />
-          for the modern world
-        </h2>
 
-        {/* Subheading */}
-        <p
+          <span className="text-[#00bfff]">
+            skills
+          </span>
+
+          {" "}for the{" "}
+
+          <span className="text-[#8b5cf6]">
+            modern
+          </span>
+
+          {" "}world
+        </motion.h2>
+
+        {/* subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.5 }}
           className="
             text-center
             text-[20px]
-            md:text-[28px]
+            md:text-[30px]
             leading-relaxed
             text-[#6b7280]
-            max-w-4xl
-            mx-auto
-            mt-8
             font-medium
+            max-w-5xl
+            mx-auto
+            mt-10
           "
         >
-          Learn entrepreneurship, AI tools, branding, execution,
-          growth strategy and founder mindset with practical learning.
-        </p>
+          Learn entrepreneurship, AI tools, branding,
+          execution, growth strategy and founder mindset
+          through practical startup-focused education.
+        </motion.p>
 
-        {/* Moving Skill Row */}
-        <div className="relative mt-24 overflow-hidden">
+        {/* moving premium row */}
+        <div className="relative mt-28 overflow-hidden">
 
-          {/* Fade left */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#f8f9fb] to-transparent z-10" />
+          {/* fade left */}
+          <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-[#f8f9fb] to-transparent z-10" />
 
-          {/* Fade right */}
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#f8f9fb] to-transparent z-10" />
+          {/* fade right */}
+          <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-[#f8f9fb] to-transparent z-10" />
 
-          <div className="flex gap-16 animate-marquee whitespace-nowrap">
-
+          {/* marquee */}
+          <motion.div
+            animate={{
+              x: ["0%", "-50%"],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 22,
+              ease: "linear",
+            }}
+            className="flex gap-20 whitespace-nowrap w-max"
+          >
             {[...skills, ...skills].map((skill, index) => (
               <motion.div
                 key={`${skill.name}-${index}`}
                 whileHover={{
-                  y: -2,
-                  scale: 1.03,
+                  y: -5,
+                  scale: 1.05,
                 }}
                 transition={{ duration: 0.2 }}
-                className="
-                  flex
-                  items-center
-                  gap-3
-                  shrink-0
-                  cursor-default
-                "
+                className="flex items-center gap-4 shrink-0"
               >
-                {/* Colored dot */}
+                {/* premium glow dot */}
                 <div
                   className={`
-                    w-2.5
-                    h-2.5
+                    w-3
+                    h-3
                     rounded-full
                     ${skill.color}
                     bg-current
-                    shadow-lg
+                    shadow-[0_0_20px_currentColor]
                   `}
                 />
 
-                {/* Text */}
+                {/* premium text */}
                 <span
-                  className="
-                    text-[20px]
-                    md:text-[28px]
-                    font-semibold
-                    tracking-[-0.03em]
-                    text-[#111111]
-                  "
+                  className={`
+                    ${skill.color}
+                    text-[28px]
+                    md:text-[36px]
+                    font-black
+                    tracking-[-0.05em]
+                  `}
                 >
                   {skill.name}
                 </span>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </section>
