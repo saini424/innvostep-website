@@ -17,7 +17,7 @@ const particles = [
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#f8f8f6] min-h-screen pt-32 md:pt-40 lg:pt-44 xl:pt-48">
+    <section className="relative overflow-hidden bg-[#f8f8f6] min-h-screen pt-20 md:pt-24 lg:pt-28 xl:pt-32">
 
       {/* Premium Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.035)_1px,transparent_1px)] bg-[size:72px_72px]" />
@@ -53,9 +53,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="mb-8"
+          className="mb-6"
         >
-          <span className="text-[11px] md:text-xs uppercase tracking-[0.35em] text-[#8a8a8a] font-semibold">
+          <span className="text-[10px] md:text-xs uppercase tracking-[0.35em] text-[#8a8a8a] font-semibold">
             MODERN STARTUP EDUCATION
           </span>
         </motion.div>
@@ -65,41 +65,23 @@ export function Hero() {
           initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9 }}
-          className="leading-[0.92] font-black tracking-[-0.05em] mb-10"
+          className="leading-[0.92] font-black tracking-[-0.05em] mb-8"
         >
 
           {/* BLACK */}
-          <span className="block text-black text-[54px] sm:text-[72px] md:text-[96px] lg:text-[118px] xl:text-[132px]">
+          <span className="block text-black text-[42px] sm:text-[58px] md:text-[78px] lg:text-[96px] xl:text-[108px]">
             Build Your
           </span>
 
           {/* GREEN */}
-          <motion.span
-            animate={{
-              y: [0, -4, 0],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-            }}
-            className="block text-[#19c37d] text-[50px] sm:text-[68px] md:text-[92px] lg:text-[110px] xl:text-[124px]"
-          >
+          <span className="block text-[#19c37d] text-[40px] sm:text-[56px] md:text-[74px] lg:text-[92px] xl:text-[102px]">
             Startup
-          </motion.span>
+          </span>
 
           {/* DARK RED */}
-          <motion.span
-            animate={{
-              y: [0, 4, 0],
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-            }}
-            className="block text-[#7a1f1f] text-[48px] sm:text-[66px] md:text-[88px] lg:text-[106px] xl:text-[120px]"
-          >
+          <span className="block text-[#7a1f1f] text-[38px] sm:text-[52px] md:text-[70px] lg:text-[86px] xl:text-[96px]">
             Journey
-          </motion.span>
+          </span>
         </motion.h1>
 
         {/* Description */}
@@ -107,7 +89,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-3xl mx-auto text-[17px] sm:text-[19px] md:text-[24px] leading-relaxed text-[#5f6368] font-medium mb-12"
+          className="max-w-3xl mx-auto text-[16px] sm:text-[18px] md:text-[22px] leading-relaxed text-[#5f6368] font-medium mb-10"
         >
           Learn entrepreneurship, startup execution, business strategy,
           marketing, and real-world startup skills with Innvostep.
@@ -121,14 +103,14 @@ export function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-5"
         >
 
-          <Button className="bg-black hover:bg-[#1a1a1a] text-white rounded-full px-10 py-7 text-lg font-semibold shadow-xl transition-all duration-300 hover:scale-[1.03]">
+          <Button className="bg-black hover:bg-[#1a1a1a] text-white rounded-full px-9 py-6 text-base font-semibold shadow-xl transition-all duration-300 hover:scale-[1.03]">
             Start Learning
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
 
           <Button
             variant="outline"
-            className="rounded-full px-10 py-7 text-lg border border-black/10 bg-white/70 backdrop-blur-md hover:bg-white text-black shadow-lg"
+            className="rounded-full px-9 py-6 text-base border border-black/10 bg-white/70 backdrop-blur-md hover:bg-white text-black shadow-lg"
           >
             Explore Innvostep
           </Button>
@@ -139,7 +121,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-10"
+          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-10"
         >
           {[
             { value: "10K+", label: "Startup Learners" },
@@ -152,7 +134,7 @@ export function Hero() {
               whileHover={{ y: -4 }}
               className="text-center"
             >
-              <div className="text-4xl md:text-5xl font-black tracking-tight text-black">
+              <div className="text-3xl md:text-4xl font-black tracking-tight text-black">
                 {stat.value}
               </div>
 
