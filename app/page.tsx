@@ -9,12 +9,20 @@ import { FAQ } from "@/components/landing/faq"
 import { CTA } from "@/components/landing/cta"
 import { Footer } from "@/components/landing/footer"
 
-
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-x-hidden">
+    <main className="min-h-screen overflow-x-hidden bg-[#f8f8f6]">
+
+      {/* Fixed Navbar */}
       <Navbar />
+
+      {/* Spacer For Fixed Navbar */}
+      <div className="h-24 md:h-28 lg:h-32" />
+
+      {/* Hero Section */}
       <Hero />
+
+      {/* Remaining Sections */}
       <SocialSection />
       <LogoMarquee />
       <Features />
@@ -23,6 +31,7 @@ export default function Home() {
       <FAQ />
       <CTA />
       <Footer />
+
     </main>
   )
 }

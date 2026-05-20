@@ -17,26 +17,27 @@ const particles = [
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#f7f7f5]">
+    <section className="relative overflow-hidden bg-[#f8f8f6] min-h-screen pt-32 md:pt-40 lg:pt-44 xl:pt-48">
 
-      {/* Light Grid Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:70px_70px]" />
+      {/* Premium Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.035)_1px,transparent_1px)] bg-[size:72px_72px]" />
 
-      {/* Soft Glow */}
-      <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-cyan-500/10 blur-[180px] rounded-full" />
+      {/* Glow Effects */}
+      <div className="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-green-500/10 blur-[140px] rounded-full" />
+      <div className="absolute bottom-[-10%] right-[10%] w-[500px] h-[500px] bg-red-500/10 blur-[140px] rounded-full" />
 
       {/* Floating particles */}
       {particles.map((particle, i) => (
         <motion.div
           key={i}
-          className="absolute w-1.5 h-1.5 bg-cyan-500/40 rounded-full"
+          className="absolute w-2 h-2 bg-black/10 rounded-full"
           style={{
             left: particle.left,
             top: particle.top,
           }}
           animate={{
-            y: [0, -20, 0],
-            opacity: [0.2, 0.8, 0.2],
+            y: [0, -18, 0],
+            opacity: [0.2, 0.7, 0.2],
           }}
           transition={{
             duration: particle.duration,
@@ -47,18 +48,58 @@ export function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
 
+        {/* Small Tag */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="mb-8"
+        >
+          <span className="text-[11px] md:text-xs uppercase tracking-[0.35em] text-[#8a8a8a] font-semibold">
+            MODERN STARTUP EDUCATION
+          </span>
+        </motion.div>
+
         {/* Heading */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 text-black leading-tight"
+          transition={{ duration: 0.9 }}
+          className="leading-[0.92] font-black tracking-[-0.05em] mb-10"
         >
-          <span className="block">Build Your</span>
 
-          <span className="block bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
-            Startup Journey
+          {/* BLACK */}
+          <span className="block text-black text-[54px] sm:text-[72px] md:text-[96px] lg:text-[118px] xl:text-[132px]">
+            Build Your
           </span>
+
+          {/* GREEN */}
+          <motion.span
+            animate={{
+              y: [0, -4, 0],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+            }}
+            className="block text-[#19c37d] text-[50px] sm:text-[68px] md:text-[92px] lg:text-[110px] xl:text-[124px]"
+          >
+            Startup
+          </motion.span>
+
+          {/* DARK RED */}
+          <motion.span
+            animate={{
+              y: [0, 4, 0],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+            }}
+            className="block text-[#7a1f1f] text-[48px] sm:text-[66px] md:text-[88px] lg:text-[106px] xl:text-[120px]"
+          >
+            Journey
+          </motion.span>
         </motion.h1>
 
         {/* Description */}
@@ -66,7 +107,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed"
+          className="max-w-3xl mx-auto text-[17px] sm:text-[19px] md:text-[24px] leading-relaxed text-[#5f6368] font-medium mb-12"
         >
           Learn entrepreneurship, startup execution, business strategy,
           marketing, and real-world startup skills with Innvostep.
@@ -74,19 +115,20 @@ export function Hero() {
 
         {/* Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="flex flex-col sm:flex-row items-center justify-center gap-5"
         >
-          <Button className="bg-cyan-500 hover:bg-cyan-400 text-white px-8 py-6 text-lg rounded-xl font-semibold shadow-lg">
+
+          <Button className="bg-black hover:bg-[#1a1a1a] text-white rounded-full px-10 py-7 text-lg font-semibold shadow-xl transition-all duration-300 hover:scale-[1.03]">
             Start Learning
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
 
           <Button
             variant="outline"
-            className="border-black/10 bg-white/70 hover:bg-white text-black px-8 py-6 text-lg rounded-xl backdrop-blur-md"
+            className="rounded-full px-10 py-7 text-lg border border-black/10 bg-white/70 backdrop-blur-md hover:bg-white text-black shadow-lg"
           >
             Explore Innvostep
           </Button>
@@ -94,10 +136,10 @@ export function Hero() {
 
         {/* Stats */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-8"
+          className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-10"
         >
           {[
             { value: "10K+", label: "Startup Learners" },
@@ -105,21 +147,25 @@ export function Hero() {
             { value: "50+", label: "Startup Frameworks" },
             { value: "24/7", label: "Learning Access" },
           ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-cyan-600">
+            <motion.div
+              key={stat.label}
+              whileHover={{ y: -4 }}
+              className="text-center"
+            >
+              <div className="text-4xl md:text-5xl font-black tracking-tight text-black">
                 {stat.value}
               </div>
 
-              <div className="text-sm text-gray-500 mt-2">
+              <div className="text-sm md:text-base text-[#7a7a7a] mt-3 font-medium">
                 {stat.label}
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>
 
       {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#f7f7f5] to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#f8f8f6] to-transparent" />
     </section>
   )
 }

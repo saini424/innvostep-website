@@ -20,7 +20,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setIsScrolled(window.scrollY > 30)
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -36,11 +36,11 @@ export function Navbar() {
         transition={{ duration: 0.6 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-white/80 backdrop-blur-xl border-b border-gray-200 py-3"
-            : "py-4 md:py-6"
+            ? "bg-[#f8f8f6]/90 backdrop-blur-xl border-b border-black/5 py-3"
+            : "bg-[#f8f8f6]/70 backdrop-blur-md py-4 md:py-5"
         }`}
       >
-        <nav className="max-w-7xl mx-auto px-5 md:px-6 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
 
           {/* Logo */}
           <Link href="/">
@@ -70,14 +70,14 @@ export function Navbar() {
                   alt="Innvostep Logo"
                   width={44}
                   height={44}
-                  className="relative object-contain md:w-[52px] md:h-[52px]"
+                  className="relative object-contain w-[40px] h-[40px] md:w-[52px] md:h-[52px]"
                   priority
                 />
               </motion.div>
 
               {/* Brand Name */}
               <div className="flex flex-col leading-none">
-                <span className="text-xl md:text-2xl font-black tracking-tight text-black whitespace-nowrap">
+                <span className="text-lg sm:text-xl md:text-2xl font-black tracking-tight text-black whitespace-nowrap">
                   Innvo
                   <span className="text-orange-500">
                     step
@@ -88,12 +88,12 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-10">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-gray-600 hover:text-black transition-colors duration-200 text-sm font-medium"
+                className="text-gray-600 hover:text-black transition-colors duration-200 text-sm font-semibold whitespace-nowrap"
               >
                 {item.label}
               </Link>
@@ -101,8 +101,8 @@ export function Navbar() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6">
+          <div className="hidden lg:flex items-center gap-4">
+            <Button className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl px-6 py-5">
               Start Learning
             </Button>
           </div>
@@ -110,7 +110,7 @@ export function Navbar() {
           {/* Mobile Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-black shrink-0"
+            className="lg:hidden p-2 text-black shrink-0"
           >
             {isMobileMenuOpen ? (
               <X className="w-7 h-7" />
@@ -129,9 +129,10 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-xl pt-28 px-6 md:hidden"
+            className="fixed inset-0 z-40 bg-[#f8f8f6]/95 backdrop-blur-xl pt-28 px-6 lg:hidden"
           >
             <div className="flex flex-col gap-6">
+
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.label}
@@ -150,9 +151,10 @@ export function Navbar() {
               ))}
 
               <div className="flex flex-col gap-4 mt-8">
+
                 <Button
                   variant="outline"
-                  className="w-full py-6 rounded-xl"
+                  className="w-full py-6 rounded-xl border-black/10"
                 >
                   Join Free
                 </Button>
@@ -160,6 +162,7 @@ export function Navbar() {
                 <Button className="w-full py-6 bg-orange-500 hover:bg-orange-600 text-white rounded-xl">
                   Get Started
                 </Button>
+
               </div>
             </div>
           </motion.div>
