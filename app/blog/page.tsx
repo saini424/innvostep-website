@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { BgDecoration } from "@/components/ui/bg-decoration"
 
 export default function BlogPage() {
@@ -22,22 +23,27 @@ export default function BlogPage() {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Example Card */}
-          <div className="group relative bg-white/50 backdrop-blur-md border border-white/20 p-8 rounded-3xl shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl hover:bg-white/80">
-            <div className="text-xs font-bold text-emerald-600 mb-4 bg-emerald-100 px-3 py-1 rounded-full w-fit">
-              ENTREPRENEURSHIP
+          
+          {/* ARTICLE CARD START */}
+          <Link href="/blog/how-to-start-entrepreneurship-as-a-student">
+            <div className="group relative bg-white/50 backdrop-blur-md border border-white/20 p-8 rounded-3xl shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl hover:bg-white/80 cursor-pointer">
+              <div className="text-xs font-bold text-emerald-600 mb-4 bg-emerald-100 px-3 py-1 rounded-full w-fit">
+                ENTREPRENEURSHIP
+              </div>
+              <h3 className="text-2xl font-bold mb-4 leading-tight group-hover:text-purple-600 transition-colors">
+                How To Start Entrepreneurship As A Student
+              </h3>
+              <p className="text-slate-600 mb-8 line-clamp-3">
+                Learn how students can begin their entrepreneurship journey from zero with zero funding.
+              </p>
+              <div className="flex items-center text-sm font-black text-slate-900">
+                Read Article 
+                <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
+              </div>
             </div>
-            <h3 className="text-2xl font-bold mb-4 leading-tight group-hover:text-purple-600 transition-colors">
-              How To Start Entrepreneurship As A Student
-            </h3>
-            <p className="text-slate-600 mb-8 line-clamp-3">
-              Learn how students can begin their entrepreneurship journey from zero with zero funding.
-            </p>
-            <div className="flex items-center text-sm font-black text-slate-900">
-              Read Article 
-              <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
-            </div>
-          </div>
+          </Link>
+          {/* ARTICLE CARD END */}
+
         </div>
       </div>
     </div>
