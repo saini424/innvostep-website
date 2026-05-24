@@ -16,8 +16,8 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.title} | Innvostep`,
-    description: post.description,
+    title: `${post.frontmatter.title} | Innvostep`,
+    description: post.frontmatter.description,
   };
 }
 
@@ -31,21 +31,25 @@ export default async function BlogPostPage({
   const post = getPostBySlug(slug);
 
   if (!post) {
-    return <div>Post not found</div>;
+    return (
+      <main className="min-h-screen flex items-center justify-center">
+        <h1 className="text-3xl font-bold">Post Not Found</h1>
+      </main>
+    );
   }
 
   return (
-    <main className="min-h-screen bg-white text-black py-20">
-      <article className="max-w-4xl mx-auto px-6 py-32">
+    <main className="max-w-4xl mx-auto px-6 py-32">
+      <article>
         <h1 className="text-5xl font-black mb-8">
-          {post.title}
+          {post.frontmatter.title}
         </h1>
 
         <p className="text-xl text-gray-600 mb-12">
-          {post.description}
+          {post.frontmatter.description}
         </p>
 
-        <div className="space-y-6 text-lg leading-relaxed whitespace-pre-wrap">
+        <div className="prose prose-lg max-w-none">
           {post.content}
         </div>
       </article>
