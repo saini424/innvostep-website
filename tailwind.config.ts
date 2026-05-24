@@ -39,7 +39,10 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"), // Added this for beautiful blog text
+  ],
 }
 
 export default config
