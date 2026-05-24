@@ -11,6 +11,7 @@ const navItems = [
   { label: "Programs", href: "#features" },
   { label: "Success Stories", href: "#testimonials" },
   { label: "Community", href: "#pricing" },
+  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "#faq" },
 ]
 
@@ -37,55 +38,59 @@ export function Navbar() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? "bg-[#f8f8f6]/90 backdrop-blur-xl border-b border-black/5 py-3"
-            : "bg-[#f8f8f6]/70 backdrop-blur-md py-4 md:py-5"
+            : "bg-[#f8f8f6]/70 backdrop-blur-md py-3 md:py-5"
         }`}
       >
-        <nav className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between">
 
-          {/* Logo */}
-          <Link href="/">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="flex items-center gap-2 md:gap-3 cursor-pointer"
-            >
+          {/* LEFT SIDE */}
+          <div className="flex items-center gap-3 min-w-0">
 
-              {/* Floating Logo */}
+            {/* Logo */}
+            <Link href="/" className="shrink-0">
               <motion.div
-                animate={{
-                  y: [0, -2, 0],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                }}
-                className="relative shrink-0"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="flex items-center gap-2 md:gap-3 cursor-pointer"
               >
-                {/* Glow */}
-                <div className="absolute inset-0 bg-orange-500/20 blur-xl rounded-full scale-125" />
 
-                <Image
-                  src="/logo.png"
-                  alt="Innvostep Logo"
-                  width={44}
-                  height={44}
-                  className="relative object-contain w-[40px] h-[40px] md:w-[52px] md:h-[52px]"
-                  priority
-                />
-              </motion.div>
+                {/* Floating Logo */}
+                <motion.div
+                  animate={{
+                    y: [0, -2, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                  }}
+                  className="relative shrink-0"
+                >
+                  {/* Glow */}
+                  <div className="absolute inset-0 bg-orange-500/20 blur-xl rounded-full scale-125" />
 
-              {/* Brand Name */}
-              <div className="flex flex-col leading-none">
-                <span className="text-lg sm:text-xl md:text-2xl font-black tracking-tight text-black whitespace-nowrap">
-                  Innvo
-                  <span className="text-orange-500">
-                    step
+                  <Image
+                    src="/logo.png"
+                    alt="Innvostep Logo"
+                    width={42}
+                    height={42}
+                    className="relative object-contain w-[34px] h-[34px] sm:w-[38px] sm:h-[38px] md:w-[48px] md:h-[48px]"
+                    priority
+                  />
+                </motion.div>
+
+                {/* Brand Name */}
+                <div className="leading-none">
+                  <span className="text-base sm:text-lg md:text-2xl font-black tracking-tight text-black whitespace-nowrap">
+                    Innvo
+                    <span className="text-orange-500">
+                      step
+                    </span>
                   </span>
-                </span>
-              </div>
-            </motion.div>
-          </Link>
+                </div>
+              </motion.div>
+            </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-10">
@@ -110,7 +115,7 @@ export function Navbar() {
           {/* Mobile Toggle */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-black shrink-0"
+            className="lg:hidden p-2 text-black shrink-0 ml-2"
           >
             {isMobileMenuOpen ? (
               <X className="w-7 h-7" />
