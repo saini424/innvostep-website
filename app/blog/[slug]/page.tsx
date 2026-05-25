@@ -1,40 +1,59 @@
-import { BgDecoration } from "@/components/ui/bg-decoration"
+import { getPostBySlug } from "@/lib/blog";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
-export default function BlogPost() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found | Innvostep",
+    };
+  }
+
+  return {
+    title: `${post.frontmatter.title} | Innvostep`,
+    description: post.frontmatter.description,
+  };
+}
+
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return (
+      <main className="min-h-screen flex items-center justify-center">
+        <h1 className="text-3xl font-bold">Post Not Found</h1>
+      </main>
+    );
+  }
+
   return (
-    <div className="relative min-h-screen py-20 px-6">
-      <BgDecoration />
-      
-      <article className="max-w-3xl mx-auto">
-        <header className="mb-12 text-center">
-           <h1 className="text-4xl md:text-6xl font-black mb-6">
-             How To Start Entrepreneurship As A Student
-           </h1>
-           <p className="text-xl text-slate-500 italic">
-             Learn how students can begin their entrepreneurship journey from zero.
-           </p>
-        </header>
+    <main className="max-w-4xl mx-auto px-6 py-32">
+      <article className="prose prose-lg max-w-none prose-headings:text-black prose-p:text-gray-700 prose-strong:text-black prose-li:text-gray-700">
+        
+        <h1 className="text-5xl font-black mb-6">
+          {post.frontmatter.title}
+        </h1>
 
-        {/* The "Prose" class makes the content look beautiful automatically */}
-        <div className="prose prose-lg prose-slate max-w-none bg-white/40 backdrop-blur-xl p-8 md:p-12 rounded-[2rem] border border-white/40 shadow-2xl">
-           {/* Your blog content goes here. If it's Markdown, use a markdown component */}
-           <h2>Introduction</h2>
-           <p>Entrepreneurship is becoming one of the most valuable skills...</p>
-           
-           <div className="bg-purple-600 text-white p-6 rounded-2xl my-8">
-             <h4 className="text-white mt-0">💡 Quick Tip</h4>
-             <p className="mb-0 text-purple-100">Start small. You do not need funding to begin. Focus on marketing and communication.</p>
-           </div>
-           
-           <h3>Focus Areas:</h3>
-           <ul>
-             <li>Marketing</li>
-             <li>Communication</li>
-             <li>Networking</li>
-             <li>Execution</li>
-           </ul>
-        </div>
+        <p className="text-xl text-gray-500 mb-12">
+          {post.frontmatter.description}
+        </p>
+
+        <MDXRemote source={post.content} />
+
       </article>
-    </div>
-  )
+    </main>
+  );
 }
