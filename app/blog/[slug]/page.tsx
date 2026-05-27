@@ -1,226 +1,123 @@
-import { getPostBySlug } from "@/lib/blog"
-import {
-  Rocket,
-  Brain,
-  Target,
-  TrendingUp,
-  Lightbulb,
-  BookOpen,
-  ArrowRight,
-  Sparkles,
-} from "lucide-react"
+import * as fs from 'fs'
+import path from 'path'
+import ReactMarkdown from 'react-markdown'
+import { notFound } from 'next/navigation'
+import { BgDecoration } from "@/components/ui/bg-decoration"
+import { MarketChart } from "@/components/blog/market-chart"
+import { ArrowLeft, Clock, Calendar, User, Share2, Sparkles, Zap, TrendingUp } from 'lucide-react'
+import Link from 'next/link'
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+export default async function BlogPost({ params }: { params: { slug: string } }) {
   const { slug } = await params
-  const post = getPostBySlug(slug)
+  const contentDirectory = path.join(process.cwd(), 'content/blog')
+  const filePath = path.join(contentDirectory, `${slug}.mdx`)
 
-  if (!post) {
-    return {
-      title: "Post Not Found | Innvostep",
-    }
-  }
-
-  return {
-    title: `${post.frontmatter.title} | Innvostep`,
-    description: post.frontmatter.description,
-  }
-}
-
-export default async function BlogPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
-  const { slug } = await params
-  const post = getPostBySlug(slug)
-
-  if (!post) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-3xl font-bold">
-        Blog Not Found
-      </div>
-    )
-  }
+  if (!fs.existsSync(filePath)) return notFound()
+  const fileContent = fs.readFileSync(filePath, 'utf8')
+  
+  // Clean frontmatter and symbols
+  const contentOnly = fileContent.replace(/---[\s\S]*?---/, '').replace(/#/g, '').trim()
 
   return (
-    <main className="bg-black text-white min-h-screen overflow-hidden">
+    <div className="relative min-h-screen bg-[#F8FAFC] text-slate-900 pb-24">
+      <BgDecoration />
+      
+      {/* Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1 bg-slate-100 z-50">
+        <div className="h-full bg-purple-600 w-1/3"></div>
+      </div>
 
-      {/* HERO SECTION */}
+      <div className="max-w-5xl mx-auto px-6 pt-20">
+        <Link href="/blog" className="flex items-center text-slate-400 hover:text-purple-600 transition-all mb-12 group">
+          <ArrowLeft className="mr-2 size-4 group-hover:-translate-x-1 transition-transform" />
+          Back to Insights
+        </Link>
 
-      <section className="relative px-6 py-28 lg:px-20 border-b border-white/10 overflow-hidden">
-
-        <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-cyan-500/10" />
-
-        <div className="absolute top-20 left-10 w-72 h-72 bg-green-500/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-20 right-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-[120px]" />
-
-        <div className="relative z-10 max-w-6xl mx-auto">
-
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/10 rounded-full px-4 py-2 mb-8">
-            <Sparkles className="w-4 h-4 text-green-400" />
-            <span className="text-sm text-gray-300">
-              Future Entrepreneurs Guide
-            </span>
+        <header className="mb-16">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="px-4 py-1 bg-purple-600 text-white text-[10px] font-bold rounded-full tracking-tighter uppercase">Entrepreneurship</span>
+            <span className="text-slate-400 text-xs flex items-center gap-1"><Clock className="size-3"/> 6 min read</span>
           </div>
-
-          <h1 className="text-6xl lg:text-8xl font-black leading-none tracking-tight max-w-5xl">
-            {post.frontmatter.title}
+          
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-slate-900 leading-[1.05] mb-8">
+            How to Start <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Entrepreneurship</span> as a Student.
           </h1>
 
-          <p className="text-2xl text-gray-400 mt-10 max-w-3xl leading-relaxed">
-            {post.frontmatter.description}
-          </p>
-
-          <div className="flex flex-wrap gap-4 mt-10">
-            <div className="bg-green-500/10 border border-green-500/20 rounded-xl px-5 py-3">
-              🚀 Startup Mindset
+          <div className="flex items-center justify-between border-y border-slate-200 py-6">
+            <div className="flex items-center gap-4">
+              <div className="size-12 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 border-2 border-white shadow-lg" />
+              <div>
+                <p className="text-sm font-bold text-slate-900">Shravan Sankhla</p>
+                <p className="text-xs text-slate-400 font-medium italic">Founder, InnvoStep</p>
+              </div>
             </div>
-
-            <div className="bg-cyan-500/10 border border-cyan-500/20 rounded-xl px-5 py-3">
-              💡 Real Business Skills
-            </div>
-
-            <div className="bg-purple-500/10 border border-purple-500/20 rounded-xl px-5 py-3">
-              📈 Future Growth
-            </div>
+            <button className="p-3 rounded-full bg-white border border-slate-200 hover:bg-slate-50 transition-colors shadow-sm">
+              <Share2 className="size-4 text-slate-600" />
+            </button>
           </div>
-        </div>
-      </section>
+        </header>
 
-      {/* FEATURE CARDS */}
-
-      <section className="px-6 lg:px-20 py-20">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-          <div className="bg-gradient-to-br from-green-500/10 to-transparent border border-white/10 rounded-3xl p-8 hover:scale-105 transition">
-            <Rocket className="w-12 h-12 text-green-400 mb-6" />
-            <h3 className="text-2xl font-bold mb-4">
-              Build Fast
-            </h3>
-            <p className="text-gray-400">
-              Learn how modern students launch startups from laptops and phones.
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-br from-cyan-500/10 to-transparent border border-white/10 rounded-3xl p-8 hover:scale-105 transition">
-            <Brain className="w-12 h-12 text-cyan-400 mb-6" />
-            <h3 className="text-2xl font-bold mb-4">
-              Think Different
-            </h3>
-            <p className="text-gray-400">
-              Entrepreneurial thinking helps you spot opportunities everywhere.
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-br from-purple-500/10 to-transparent border border-white/10 rounded-3xl p-8 hover:scale-105 transition">
-            <Target className="w-12 h-12 text-purple-400 mb-6" />
-            <h3 className="text-2xl font-bold mb-4">
-              Solve Problems
-            </h3>
-            <p className="text-gray-400">
-              The best startups are created by solving real-world frustrations.
-            </p>
-          </div>
-
-          <div className="bg-gradient-to-br from-orange-500/10 to-transparent border border-white/10 rounded-3xl p-8 hover:scale-105 transition">
-            <TrendingUp className="w-12 h-12 text-orange-400 mb-6" />
-            <h3 className="text-2xl font-bold mb-4">
-              Grow Bigger
-            </h3>
-            <p className="text-gray-400">
-              Build skills, audience, and income while still in college.
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* MAIN ARTICLE */}
-
-      <section className="px-6 lg:px-20 pb-24">
-        <div className="max-w-5xl mx-auto">
-
-          <div className="bg-white/[0.03] border border-white/10 rounded-[40px] p-8 lg:p-16 backdrop-blur-xl">
-
-            <div className="prose prose-invert prose-lg max-w-none
-              prose-headings:text-white
-              prose-headings:font-black
-              prose-h2:text-5xl
-              prose-h2:mt-24
-              prose-h2:mb-8
-              prose-h3:text-3xl
-              prose-h3:text-green-400
-              prose-p:text-gray-300
-              prose-p:leading-8
-              prose-p:text-xl
-              prose-strong:text-white
-              prose-ul:text-gray-300
-              prose-li:marker:text-green-400
-              prose-blockquote:border-green-500
-              prose-blockquote:bg-green-500/10
-              prose-blockquote:rounded-2xl
-              prose-blockquote:px-6
-              prose-blockquote:py-4
-              prose-blockquote:text-white
-              prose-a:text-green-400
-            ">
-              {post.content}
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* CTA SECTION */}
-
-      <section className="px-6 lg:px-20 pb-32">
-        <div className="max-w-6xl mx-auto">
-
-          <div className="relative overflow-hidden rounded-[40px] border border-white/10 bg-gradient-to-br from-green-500/20 via-black to-cyan-500/20 p-14">
-
-            <div className="absolute inset-0 bg-black/40" />
-
-            <div className="relative z-10">
-
-              <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-5 py-2 mb-8">
-                <Lightbulb className="w-5 h-5 text-yellow-400" />
-                <span>Start Building Today</span>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-16">
+          {/* Main Article Card */}
+          <main className="bg-white rounded-[3rem] p-8 md:p-16 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white">
+            <div className="prose prose-slate prose-lg max-w-none 
+              prose-p:text-slate-600 prose-p:leading-[1.8] 
+              prose-headings:text-slate-900 prose-headings:font-black
+              prose-strong:text-purple-600">
+              
+              <div className="flex items-start gap-4 p-6 bg-purple-50 rounded-3xl border border-purple-100 mb-12">
+                <Sparkles className="size-6 text-purple-600 shrink-0 mt-1" />
+                <p className="text-purple-900 font-medium text-sm m-0">The Internet has created a new economy. Students winning today aren't waiting for permission; they are building audiences and startups while learning AI.</p>
               </div>
 
-              <h2 className="text-5xl lg:text-7xl font-black leading-tight max-w-4xl">
-                The Future Belongs To Students Who Build.
-              </h2>
+              <ReactMarkdown>{contentOnly}</ReactMarkdown>
 
-              <p className="text-gray-300 text-2xl mt-8 max-w-3xl leading-relaxed">
-                Learn entrepreneurship, AI tools, startup execution,
-                content creation, and business strategy with Innvostep.
-              </p>
+              {/* THE SPECIAL CHART */}
+              <MarketChart />
 
-              <div className="flex flex-wrap gap-5 mt-12">
+              <div className="grid grid-cols-2 gap-4 mt-12">
+                <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                  <Zap className="size-5 text-amber-500 mb-3" />
+                  <p className="text-xs font-bold text-slate-400 uppercase">Key Takeaway</p>
+                  <p className="text-sm font-bold text-slate-900">Execution is the only differentiator.</p>
+                </div>
+                <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                  <TrendingUp className="size-5 text-emerald-500 mb-3" />
+                  <p className="text-xs font-bold text-slate-400 uppercase">Growth Tip</p>
+                  <p className="text-sm font-bold text-slate-900">Focus on distribution before product.</p>
+                </div>
+              </div>
+            </div>
+          </main>
 
-                <button className="bg-white text-black px-8 py-4 rounded-2xl font-bold text-lg hover:scale-105 transition flex items-center gap-2">
-                  Explore More
-                  <ArrowRight className="w-5 h-5" />
+          {/* Sidebar / Blank Space Fillers */}
+          <aside className="hidden lg:block space-y-8">
+            <div className="sticky top-12 space-y-8">
+              <div className="p-8 bg-gradient-to-br from-slate-900 to-slate-800 rounded-[2.5rem] text-white shadow-xl overflow-hidden relative">
+                <div className="absolute -top-12 -right-12 size-32 bg-purple-500/20 blur-3xl rounded-full" />
+                <h4 className="text-xl font-black mb-4 relative z-10">Start Building <br/> Today.</h4>
+                <p className="text-slate-400 text-sm mb-6 relative z-10 leading-relaxed">Join 500+ students learning the art of the startup.</p>
+                <button className="w-full py-3 bg-white text-slate-900 font-bold rounded-xl text-sm hover:scale-[1.02] transition-transform relative z-10">
+                  Join Community
                 </button>
-
-                <button className="border border-white/20 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white/10 transition">
-                  Learn Startup Skills
-                </button>
-
               </div>
 
+              <div className="p-8 bg-white border border-slate-200 rounded-[2.5rem] shadow-sm">
+                <h4 className="font-bold text-sm mb-6 uppercase tracking-widest text-slate-400">Up Next</h4>
+                <div className="space-y-6">
+                  {[1,2].map((i) => (
+                    <div key={i} className="group cursor-pointer">
+                      <p className="text-[10px] font-black text-purple-600 mb-1">AI TOOLS</p>
+                      <h5 className="font-bold text-sm group-hover:text-purple-600 transition-colors">How to use AI to build your MVP in 48 hours.</h5>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-
-          </div>
-
+          </aside>
         </div>
-      </section>
-
-    </main>
+      </div>
+    </div>
   )
 }
