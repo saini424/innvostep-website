@@ -1,0 +1,18 @@
+export function Newsletter() {
+  return (
+    <div className="max-w-4xl mx-auto my-24 p-12 bg-slate-900 rounded-[3.5rem] text-center relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
+      <h2 className="text-4xl font-black text-white mb-4 relative z-10">Stop Reading. Start Building.</h2>
+      <p className="text-slate-400 mb-8 max-w-md mx-auto relative z-10">Join 1,200+ student founders receiving weekly execution blueprints.</p>
+      <div className="flex flex-col md:flex-row gap-4 max-w-md mx-auto relative z-10">
+        <input 
+          className="flex-1 px-6 py-4 bg-white/10 border border-white/20 rounded-2xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500" 
+          placeholder="Enter your university email"
+        />
+        <button className="px-8 py-4 bg-purple-600 text-white font-black rounded-2xl hover:bg-purple-500 transition-all shadow-xl shadow-purple-500/20">
+          Join Now
+        </button>
+      </div>
+    </div>
+  )
+}

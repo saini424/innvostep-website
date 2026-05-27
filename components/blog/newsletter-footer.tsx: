@@ -1,0 +1,36 @@
+import { Mail, ArrowRight } from "lucide-react"
+
+export function NewsletterFooter() {
+  return (
+    <div className="max-w-6xl mx-auto px-6 py-24">
+        <div className="bg-slate-900 rounded-[4rem] p-12 md:p-24 text-center relative overflow-hidden shadow-2xl border border-slate-800">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10" />
+          <div className="absolute -top-24 -left-24 size-96 bg-purple-600/20 blur-[120px] rounded-full" />
+          
+          <div className="relative z-10">
+            <div className="size-16 bg-white/10 rounded-3xl flex items-center justify-center mx-auto mb-10 backdrop-blur-xl border border-white/10">
+                <Mail className="size-8 text-white" />
+            </div>
+            <h2 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tighter">
+                Stop Reading. <br /> 
+                <span className="text-purple-400 font-black italic underline decoration-blue-500 underline-offset-8">Start Building.</span>
+            </h2>
+            <p className="text-slate-400 text-lg md:text-xl max-w-xl mx-auto mb-12 font-medium">
+                Join 1,200+ student founders receiving weekly execution blueprints. No fluff. Just ROI.
+            </p>
+            
+            <div className="flex flex-col md:flex-row gap-4 max-w-lg mx-auto bg-white/5 p-2 rounded-3xl border border-white/10 backdrop-blur-md">
+                <input 
+                    type="email" 
+                    placeholder="shravan@university.edu" 
+                    className="flex-1 bg-transparent px-6 py-4 text-white focus:outline-none placeholder:text-slate-500 font-bold"
+                />
+                <button className="px-10 py-4 bg-white text-slate-900 font-black rounded-2xl hover:scale-[1.05] transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2">
+                    Join the Tribe <ArrowRight className="size-4" />
+                </button>
+            </div>
+          </div>
+        </div>
+    </div>
+  )
+}

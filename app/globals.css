@@ -160,3 +160,31 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #8b5cf6; /* Turns purple on hover */
 }
+/* Add this to the bottom of your globals.css */
+.prose h2 {
+  font-size: 2.5rem !important;
+  line-height: 1 !important;
+  letter-spacing: -0.04em !important;
+  margin-top: 3rem !important;
+}
+
+.prose ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.prose li {
+  background: white;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  margin-bottom: 1rem !important;
+  font-weight: 700;
+  color: #0f172a;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+}
+
+.prose li::before {
+  content: "🚀";
+  margin-right: 0.75rem;
+}
